@@ -115,10 +115,7 @@ def gerar_chaveamento_html(rodada_atual, partidas, vencedores=[]):
 # Classe que manipula as requisições HTTP e define as rotas
 class ChaveamentoHandler(http.server.SimpleHTTPRequestHandler):
 
-    routes = {'/': 'gerar_html_inicial',
-          '/inserir_jogadores': 'gerar_formulario_jogadores',
-          '/gerar_chaveamento': 'gerar_chaveamento_html'}
-
+    
 
     def do_GET(self):
         global jogadores, partidas, resultados, rodada_atual
@@ -151,6 +148,8 @@ class ChaveamentoHandler(http.server.SimpleHTTPRequestHandler):
             self.send_response(200)
             self.end_headers()
             self.wfile.write(gerar_chaveamento_html(rodada_atual, partidas).encode())  # Exibe o novo chaveamento
+
+        #falta funcao de finalizaçao do chaveamento
 
 # Configuração do servidor HTTP
 with socketserver.TCPServer(("", PORT), ChaveamentoHandler) as httpd:
