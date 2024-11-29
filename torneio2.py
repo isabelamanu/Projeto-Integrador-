@@ -5,6 +5,7 @@ import os
 
 PORT = 8000  # Porta onde o servidor irá rodar
 
+
 jogadores = []  # Lista para armazenar os nomes dos jogadores
 partidas = []  # Lista para armazenar as partidas
 resultados = []  # Lista para armazenar os resultados das partidas
@@ -113,6 +114,12 @@ def gerar_chaveamento_html(rodada_atual, partidas, vencedores=[]):
 
 # Classe que manipula as requisições HTTP e define as rotas
 class ChaveamentoHandler(http.server.SimpleHTTPRequestHandler):
+
+    routes = {'/': 'gerar_html_inicial',
+          '/inserir_jogadores': 'gerar_formulario_jogadores',
+          '/gerar_chaveamento': 'gerar_chaveamento_html'}
+
+
     def do_GET(self):
         global jogadores, partidas, resultados, rodada_atual
 
