@@ -7,3 +7,6 @@ def home_page(request):
 
 def pagina_cadastro(request):
     return render(request, 'cadastro.html')
+
+def chaveamento(request):
+    return render(request, 'chaveamento.html')
