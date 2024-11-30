@@ -59,4 +59,16 @@ class AdicionarJogadoresView(View):
         torneio.save()
 
         return redirect('index')
-        
+
+
+class AtualizarView(View):
+    def post(self, request, *args, **kwargs):
+        torneio = Torneio.objects.get(id=1)
+        rodada_index = int(request.POST.get('rodada_index'))
+        vencedor = request.POST.get('vencedor')
+        index = int(request.POST.get('index'))
+
+        torneio.rounds[rodada_index+1][index//2] = vencedor
+        torneio.save
+
+        return redirect('index')
