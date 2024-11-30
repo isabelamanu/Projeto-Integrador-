@@ -28,7 +28,7 @@ def chaveamento(request):
 
 # CBV (class based view)
 
-class QuantidadeJogadoresView(View):
+class QuantidadeJogadoresView(TemplateView):
     template_name = "numero_jogadores.html"
 
     def post(self, request, *args, **kwargs):
@@ -36,4 +36,9 @@ class QuantidadeJogadoresView(View):
         return render(request, 'adicionar_jogadores.html', {'numero': numero})
     
 
+class AdicionarJogadoresView(View):
+    template_name = 'adicionar_jogadores.html'
 
+    def post(self, request, *args, **kwargs):
+        jogadores = request.POST.getlist('jogadores[]')
+        quantidade_jogadores = 
