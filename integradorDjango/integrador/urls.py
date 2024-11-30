@@ -20,6 +20,5 @@ from torneio.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_page, name = 'home'),
-    path('cadastro/', pagina_cadastro, name='pag_cadastro' ),
+    
 ]

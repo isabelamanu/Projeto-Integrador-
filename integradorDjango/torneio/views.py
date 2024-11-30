@@ -41,4 +41,22 @@ class AdicionarJogadoresView(View):
 
     def post(self, request, *args, **kwargs):
         jogadores = request.POST.getlist('jogadores[]')
-        quantidade_jogadores = 
+        quantidade_jogadores = len(jogadores)
+
+        if (quantidade_jogadores & (quantidade_jogadores-1)) != 0:
+            return render(request, self.template_name, {'error': 'O numero de jogadores deve ser uma potencia de 2', 'numero': quantidade_jogadores})
+
+        rodadas = []
+        rodadas.append(jogadores)
+        while len(jogadores)>1:
+            jogadores = ['']* (len(jogadores)//2)
+            rodadas.append(jogadores)
+        
+        torneio, created = Torneio.objects.get_or_create(id=1)
+        torneio.jogadores = rodadas[0]
+        torneio.rodadas = rodadas
+        torneio.campeao = ''
+        torneio.save()
+
+        return redirect('index')
+        
