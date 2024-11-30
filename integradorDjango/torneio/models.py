@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Torneio(models.Model):
+    jogadores = models.JSONField(default=list)
     round = models.JSONField(default=list)
     round2 = models.JSONField(default=list)
     final = models.JSONField(default=list)
