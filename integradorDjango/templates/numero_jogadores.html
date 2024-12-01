@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecionar Número de Jogadores</title>
+</head>
+<body>
+    <h1>Selecionar Número de Jogadores</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="numero">Número de jogadores (potência de 2):</label>
+        <input type="number" name="numero" id="numero" min="2" step="2" required>
+        <button type="submit">Continuar</button>
+    </form>
+</body>
+</html>

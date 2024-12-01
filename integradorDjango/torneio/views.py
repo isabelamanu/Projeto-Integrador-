@@ -28,6 +28,11 @@ def chaveamento(request):
 
 # CBV (class based view)
 
+class HomeView(View):
+    template_name = 'index.html'
+
+
+
 class QuantidadeJogadoresView(TemplateView):
     template_name = "numero_jogadores.html"
 
