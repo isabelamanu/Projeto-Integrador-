@@ -28,7 +28,7 @@ def chaveamento(request):
 
 # CBV (class based view)
 
-class HomeView(View):
+class HomeView(TemplateView):
     template_name = 'index.html'
 
 
