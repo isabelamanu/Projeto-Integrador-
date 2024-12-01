@@ -20,7 +20,11 @@ from torneio.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name='home' ),
-    path('numjogadores', QuantidadeJogadoresView.as_view(), name = 'numero_jogadores'),
+    path('', home,  name='home' ),
+    path('config', ConfigView.as_view(), name = 'config'),
+    path("jogadores/<int:numero>/", JogadoresView.as_view(), name="jogadores"),
+    path('chaveamento', ChaveamentoView.as_view(), name='chaveamento'),
     
+
+   
 ]

@@ -1,79 +1,59 @@
-from django.views.generic import TemplateView, FormView, View
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from .models import Torneio
+from .forms import ConfigForm, JogadoresForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from urllib.parse import urlencode
+from django.views.generic import View
 
-# Create your views here.
-'''
-FBV (function based view)
-prefiro class based view, mas sao a mesma coisa
-
-def quantidade_jogadores(request):
-    if request.method == 'POST':
-        numero = int(request.POST.get('numero'))
-        return render(request, 'adicionar_jogadores.html', {'numero':numero})
-    
-
-
-def home_page(request):
-    context = {'title': 'Pagina Principal', 'content':'principal'}
+def home(request):
     return render(request, 'index.html')
 
-def pagina_cadastro(request):
-    return render(request, 'cadastro.html')
-
-def chaveamento(request):
-    return render(request, 'chaveamento.html')
-'''
-
-# CBV (class based view)
-
-class HomeView(TemplateView):
-    template_name = 'index.html'
-
-
-
-class QuantidadeJogadoresView(TemplateView):
-    template_name = "numero_jogadores.html"
+class ConfigView(View):
+    def get(self, request, *args, **kwargs):
+        form = ConfigForm()
+        return render(request, "config.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
-        numero = int(request.POST.get('numero'))
-        return render(request, 'adicionar_jogadores.html', {'numero': numero})
-    
+        form = ConfigForm(request.POST)
+        if form.is_valid():
+            numero = form.cleaned_data["numero"]
+            return redirect("jogadores", numero=numero)
+        return render(request, "config.html", {"form": form})
 
-class AdicionarJogadoresView(View):
-    template_name = 'adicionar_jogadores.html'
+
+class JogadoresView(View):
+    def get(self, request, numero, *args, **kwargs):
+        form = JogadoresForm(numero=numero)
+        return render(request, "jogadores.html", {"form": form, "numero": numero})
+
+    def post(self, request, numero, *args, **kwargs):
+        form = JogadoresForm(request.POST, numero=numero)
+        if form.is_valid():
+            jogadores = [form.cleaned_data[f"jogador_{i}"] for i in range(1, numero + 1)]
+            request.session['jogadores'] = jogadores
+            return redirect("chaveamento")
+        return render(request, "jogadores.html", {"form": form, "numero": numero})
+
+class ChaveamentoView(View):
+    template_name = 'chaveamento.html'
+
+    def get(self, request, *args, **kwargs):
+        jogadores = request.session.get('jogadores', [])
+        partidas = [(jogadores[i], jogadores[i + 1]) for i in range(0, len(jogadores), 2)]
+        return render(request, self.template_name, {'rodada': 1, 'partidas': partidas})
 
     def post(self, request, *args, **kwargs):
-        jogadores = request.POST.getlist('jogadores[]')
-        quantidade_jogadores = len(jogadores)
+        vencedores = []
+        for i in range(1, len(request.POST)):
+            vencedor = request.POST.get(f'vencedor_{i}')
+            if vencedor:
+                vencedores.append(vencedor)
 
-        if (quantidade_jogadores & (quantidade_jogadores-1)) != 0:
-            return render(request, self.template_name, {'error': 'O numero de jogadores deve ser uma potencia de 2', 'numero': quantidade_jogadores})
+        if len(vencedores) == 1:  # Se só houver um vencedor, ele é o campeão
+            return render(request, 'resultado.html', {'campeao': vencedores[0]})
 
-        rodadas = []
-        rodadas.append(jogadores)
-        while len(jogadores)>1:
-            jogadores = ['']* (len(jogadores)//2)
-            rodadas.append(jogadores)
-        
-        torneio, created = Torneio.objects.get_or_create(id=1)
-        torneio.jogadores = rodadas[0]
-        torneio.rodadas = rodadas
-        torneio.campeao = ''
-        torneio.save()
+        # Gera nova rodada com os vencedores
+        novas_partidas = [(vencedores[i], vencedores[i + 1]) for i in range(0, len(vencedores), 2)]
+        rodada = int(request.POST.get('rodada', 1)) + 1
 
-        return redirect('index')
-
-
-class AtualizarView(View):
-    def post(self, request, *args, **kwargs):
-        torneio = Torneio.objects.get(id=1)
-        rodada_index = int(request.POST.get('rodada_index'))
-        vencedor = request.POST.get('vencedor')
-        index = int(request.POST.get('index'))
-
-        torneio.rounds[rodada_index+1][index//2] = vencedor
-        torneio.save
-
-        return redirect('index')
+        return render(request, self.template_name, {'rodada': rodada, 'partidas': novas_partidas})
