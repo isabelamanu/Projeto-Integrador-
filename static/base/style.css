@@ -1,0 +1,277 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background-color: #003366;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.header .logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header .logo span {
+    color: #00bfff;
+}
+
+.nav {
+    margin-left: auto;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+/* Seção Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 25px;
+    color: #07021d;
+    margin-bottom: 10px;
+}
+
+.hero-text h2 {
+    font-size: 20px;
+    color: #303153;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.hero-button {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.hero-button:hover {
+    background-color: #007acc;
+}
+
+.hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #303153;
+    border-right: 8px solid #303153;
+}
+
+/* Cards */
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card h2 {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 0 0 0 0;
+    text-align: center;
+}
+
+.card p {
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.card button {
+    margin-top: auto;
+    align-self: center;
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card button:hover {
+    background-color: #007acc;
+}
+
+/* Formulário de Login e Cadastro */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+    padding: 20px;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.form-header {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.form-body {
+    padding: 20px;
+}
+
+.form-body input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-body button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #00bfff;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-body button:hover {
+    background-color: #007acc;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-footer a {
+    color: #003366;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image-container {
+        margin-top: 20px;
+        border: 8px solid #303153;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .form-box {
+        width: 90%;
+    }
+}
