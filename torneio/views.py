@@ -49,10 +49,9 @@ class ChaveamentoView(View):
             if vencedor:
                 vencedores.append(vencedor)
 
-        if len(vencedores) == 1:  # Se só houver um vencedor, ele é o campeão
+        if len(vencedores) == 1:  
             return render(request, 'resultado.html', {'campeao': vencedores[0]})
 
-        # Gera nova rodada com os vencedores
         novas_partidas = [(vencedores[i], vencedores[i + 1]) for i in range(0, len(vencedores), 2)]
         rodada = int(request.POST.get('rodada', 1)) + 1
 
