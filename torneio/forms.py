@@ -21,3 +21,13 @@ class JogadoresForm(forms.Form):
 
         for i in range(1, numero + 1):
             self.fields[f'jogador_{i}'] = forms.CharField(label=f"Jogador {i}", max_length=100, required=True)
+
+
+
+
+class LoginForms(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+
+    
