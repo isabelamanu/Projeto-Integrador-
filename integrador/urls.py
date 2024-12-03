@@ -24,6 +24,8 @@ urlpatterns = [
     path('config', ConfigView.as_view(), name = 'config'),
     path("jogadores/<int:numero>/", JogadoresView.as_view(), name="jogadores"),
     path('chaveamento', ChaveamentoView.as_view(), name='chaveamento'),
+    path('login/', loginpage, name = 'login'),
+    path('cadastro', registerpage, 'cadastro')
     
 
    
