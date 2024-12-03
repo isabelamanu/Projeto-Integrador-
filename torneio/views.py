@@ -56,3 +56,11 @@ class ChaveamentoView(View):
         rodada = int(request.POST.get('rodada', 1)) + 1
 
         return render(request, self.template_name, {'rodada': rodada, 'partidas': novas_partidas})
+    
+
+def loginpage(request):
+    return render(request, 'login.html')
+
+
+def registerpage(request):
+    return render(request, 'cadastro.html')
