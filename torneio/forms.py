@@ -23,11 +23,21 @@ class JogadoresForm(forms.Form):
             self.fields[f'jogador_{i}'] = forms.CharField(label=f"Jogador {i}", max_length=100, required=True)
 
 
-
-
 class LoginForms(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-    
+class RegisterForm(forms.Form):
+    username = forms.CharField()
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(label = 'confirm password', widget = forms.PasswordInput)
+
+    def cleanpassword(self):
+        data = self.cleaned_data
+        password = self.cleaned_data('password')
+        password2 = self.cleaned_data('password2')
+        if password != password2:
+            raise forms.ValidationError('the passwords should be equals')
+        return data
