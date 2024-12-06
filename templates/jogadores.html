@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inserir Jogadores</title>
+    <link reel='stylesheet' href='../static\base/style.css'>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">TORNEIO MASTER<span>.COM</span></div>
+    </header>
+    <div class="container">
+        <div class="form-box">
+            <div class="form-header">INSERIR JOGADORES</div>
+            <div class="form-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-header">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {{ field }}
+                        <div class="error">{{ field.errors }}</div>
+                    </div>
+                {% endfor %}
+                    <button type="submit">Iniciar Torneio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        Fale conosco: (00) 00000-0000
+    </footer>
+</body>
+</html>
+

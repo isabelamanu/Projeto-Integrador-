@@ -1,0 +1,249 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+.header {
+    background-color: #003366;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.header .logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.header .logo span {
+    color: #00bfff;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #00bfff;
+}
+
+/* Tela inicial */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    background-color: #003366;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.hero .hero-button {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.hero .hero-button:hover {
+    background-color: #007acc;
+    transform: scale(1.05);
+}
+
+/* Ajuste para a imagem na seção hero */
+.hero .hero-image {
+    max-width: 100%; /* A imagem não excede a largura do contêiner */
+    height: auto; /* Mantém a proporção original */
+    display: block; /* Garante que não haja comportamento inline indesejado */
+    margin-top: 20px; /* Espaço entre a imagem e o texto */
+    border-radius: 5px; /* (Opcional) arredondar as bordas da imagem */
+}
+
+/* Configurar Torneio */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(90vh - 50px); /* Altura total menos o cabeçalho */
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card h2 {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 0 0 0 0;
+    text-align: center;
+}
+
+.card p {
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.card button {
+    margin-top: auto;
+    align-self: center;
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card button:hover {
+    background-color: #007acc;
+}
+
+/* Formulário */
+.form-box {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.form-header {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.form-body {
+    padding: 20px;
+}
+
+.form-body input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-body button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #00bfff;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-body button:hover {
+    background-color: #007acc;
+    transform: scale(1.05);
+}
+
+/* Rodapé */
+.footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: sticky;
+    bottom: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card,
+    .form-box {
+        width: 90%;
+    }
+}

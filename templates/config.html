@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneio Master</title>
+    <link rel="stylesheet" href='../static/base/style.css'>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">TORNEIO MASTER<span>.COM</span></div>
+        <nav class="nav">
+            <a href="#">Menu</a>
+            <a href="#">Chaveamentos</a>
+            <a href="#">Contato</a>
+            <a href="#">Saiba Mais</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="form-box">
+            <div class="form-header">CONFIGURAR TORNEIO <p> INSERIR JOGADORES</p></div>
+            <div class="form-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Iniciar Torneio</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Fale conosco: (00) 00000-0000</p>
+    </footer>
+</body>
+</html>

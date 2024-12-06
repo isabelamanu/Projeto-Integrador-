@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Chaveamento</title>
+    <link rel="stylesheet" href='../static\base/style.css'>
+</head>
+<body>
+    <h1>Chaveamento - Rodada {{ rodada }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="chaveamento">
+            {% for jogador1, jogador2 in partidas %}
+                <div class="partida">
+                    <p>{{ jogador1 }} vs {{ jogador2 }}</p>
+                    <input type="radio" id="vencedor_{{ forloop.counter }}_1" name="vencedor_{{ forloop.counter }}" value="{{ jogador1 }}" required>
+                    <label for="vencedor_{{ forloop.counter }}_1">{{ jogador1 }}</label><br>
+                    <input type="radio" id="vencedor_{{ forloop.counter }}_2" name="vencedor_{{ forloop.counter }}" value="{{ jogador2 }}" required>
+                    <label for="vencedor_{{ forloop.counter }}_2">{{ jogador2 }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <input type="hidden" name="rodada" value="{{ rodada }}">
+        <button type="submit">Avançar para a próxima rodada</button>
+    </form>
+</body>
+</html>
